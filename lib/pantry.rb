@@ -1,22 +1,29 @@
+require 'pry'
 class Pantry
   attr_reader :stock
   def initialize
-    @stock = {}
+    @stock = Hash.new(0)
   end
   def stock_check(type)
-    @stock.each do |sh, it|
-      if type == sh
-        return it
-      end
-    end
-    0
+    @stock[type.ingredient] || 0
+    #binding.pry
   end
 
   def restock(type, num)
     if @stock.key?(type) == false
-      @stock[type] = num
+      @stock[type.ingredient] = num
+      binding.pry
     else
-      @stock[type] += num
+      @stock[type.ingredient] += num
+    end
+  end
+  def enough_ingredients_for?(recipe)
+    recipe.all_ingredient.each do |k,v|
+      #binding.pry
+      if @stock[k] < v
+        return false
+      end
+      true
     end
   end
 end

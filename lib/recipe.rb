@@ -4,27 +4,16 @@ class Recipe
 
   def initialize(type)
     @type = type
-    @all_ingredient = {}
-    @all_ingredient_s = {}
-    @arr = []
+    @all_ingredient =  Hash.new(0)
+    @total_calories = 0
   end
 
   def add_ingredient(ingredient, num)
-    ing = ingredient.ingredient
-    @arr << ingredient.caloris
-    @all_ingredient_s[ing] = num
-    @all_ingredient[ingredient] = num
+    @total_calories += ingredient.calories
+    @all_ingredient[ingredient.ingredient] = num
   end
 
   def quantity_needed(type)
-    @all_ingredient_s.each do |key, val|
-      if key == type
-        return @all_ingredient_s[key]
-      end
-    end
-  end
-
-  def total_caloris
-    @arr.sum
+    @all_ingredient[type]
   end
 end

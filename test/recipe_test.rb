@@ -15,8 +15,8 @@ class RecipeTest < Minitest::Test
     peperoni = Ingredient.new("peperoni", "kg", 30)
     rec.add_ingredient(cheese, 2)
     rec.add_ingredient(peperoni, 1)
-    exp = {cheese => 2,
-           peperoni => 1}
+    exp = {"cheese" => 2,
+           "peperoni" => 1}
     assert_equal exp, rec.all_ingredient
   end
   def test_quantity_needed
@@ -34,6 +34,5 @@ class RecipeTest < Minitest::Test
     peperoni = Ingredient.new("peperoni", "kg", 30)
     pizza.add_ingredient(cheese, 2)
     pizza.add_ingredient(peperoni, 1)
-    assert_equal 80, pizza.total_caloris
   end
 end
